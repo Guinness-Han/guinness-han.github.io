@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 웹앱으로 인식되도록 설정 -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-icon.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png" />
+    <title>쿠팡</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        display: flex;
+        justify-content: center; /* 가로 가운데 정렬 */
+        height: 100vh; /* 화면 전체 높이 */
+        background-color: #f4f4f4;
+        font-family: Arial, sans-serif;
+        margin-top: 50px;
+      }
+      /* a 태그 스타일 */
+      a {
+        text-decoration: none; /* 밑줄 제거 */
+        color: inherit; /* 부모 요소의 색상 상속 (필요 시 변경) */
+      }
+
+      /* 필요 시 hover 상태 스타일 추가 */
+      a:hover {
+        color: #007bff; /* 마우스 오버 시 색상 변경 */
+      }
+
+      .inline-div {
+        display: block;
+        margin-right: 10px; /* 간격 추가 (필요 시) */
+      }
+
+      .content {
+        width: 248px;
+        text-align: center; /* 텍스트 가운데 정렬 */
+        padding: 10px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .content h1 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+      }
+
+      .content p {
+        font-size: 1rem;
+        color: #666;
+      }
+    </style>
+    <script>
+      let deferredPrompt;
+
+      // 'beforeinstallprompt' 이벤트를 대기
+      window.addEventListener("beforeinstallprompt", (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        console.log("PWA 설치 프로세스 준비 완료");
+      });
+
+      // 버튼 클릭 시 바탕화면 추가
+      function addToHomeScreen() {
+        if (deferredPrompt) {
+          deferredPrompt.prompt(); // PWA 설치 대화 상자 표시
+          deferredPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === "accepted") {
+              console.log("사용자가 PWA 설치를 허용했습니다.");
+            } else {
+              console.log("사용자가 PWA 설치를 취소했습니다.");
+            }
+            deferredPrompt = null;
+          });
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div style="justify-content: center">
+      <div class="inline-div">
+        <a href="https://link.coupang.com/a/cabZVz" target="_blank">
+          <div style="text-align: center; font-size: 20px; font-weight: bold; cursor: pointer">
+            <img src="./android-icon-192x192.png" /><br />
+            쿠팡 바로가기<br />
+          </div>
+        </a>
+      </div>
+
+      <div class="inline-div" style="margin-top: 30px; cursor: pointer" onclick="addToHomeScreen()">
+        <div class="content">
+          <h4>갤럭시에 쿠팡 바로가기 추가</h4>
+        </div>
+      </div>
+
+      <br />
+      <div class="inline-div">
+        <a href="https://blog.naver.com/freeformlabs" target="_blank">
+          <div class="content">
+            <h4>프리폼랩스 블로그</h4>
+          </div>
+        </a>
+      </div>
+      <br />
+
+      <!-- <div class="inline-div">
+        <a href="https://www.everybodypick.me" target="_blank">
+          <div class="content">
+            <h4>모두의픽</h4>
+          </div>
+        </a>
+      </div>
+      <br /> -->
+
+      <div class="inline-div">
+        <a href="https://wellnessstory.kr" target="_blank">
+          <div class="content">
+            <h4>웰니스 스토리 블로그</h4>
+          </div>
+        </a>
+      </div>
+      <!-- <br />
+      <br />
+      <div class="inline-div">
+        <script src="https://ads-partners.coupang.com/g.js"></script>
+        <script>
+          new PartnersCoupang.G({ id: 832310, template: "carousel", trackingCode: "AF0781181", width: "248", height: "50", tsource: "" });
+        </script>
+      </div> -->
+    </div>
+  </body>
+</html>
