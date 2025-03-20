@@ -32,23 +32,42 @@
       }
 
       .app-item {
-        width: 80px; /* 아이콘과 텍스트를 포함한 고정 가로폭 */
+        position: relative;
+        width: 60px; /* 아이콘과 텍스트를 포함한 고정 가로폭 */
         text-align: center; /* 텍스트 중앙 정렬 */
       }
 
       .app-icon {
-        width: 80px; /* 모든 아이콘의 가로폭 동일 */
-        height: 80px; /* 정사각형 비율 유지 */
+        position: relative;
+      }
+
+      .app-icon img {
+        width: 60px; /* 모든 아이콘의 가로폭 동일 */
+        height: 60px; /* 정사각형 비율 유지 */
         background-color: #ffffff;
         border-radius: 15px; /* 둥근 모서리 */
         box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
       }
 
       .app-name {
-        font-size: 14px;
+        font-size: 12px;
         color: #333;
         word-wrap: break-word; /* 긴 이름은 줄바꿈 */
         margin-top: 5px;
+      }
+
+      .ready {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 15px; /* 둥근 모서리 */
+        color: #fff;
       }
 
       a {
@@ -59,8 +78,8 @@
   <body>
     <div style="width: 100%; text-align: center">
       <a href="https://link.coupang.com/a/cabZVz" target="_blank" style="display: inline-block">
-        <div class="app-item" style="width: 150px">
-          <div><img class="app-icon" src="./assets/icons/icon_coupang.png" style="width: 150px; height: 150px" /></div>
+        <div class="app-item" style="width: 120px">
+          <div class="app-icon"><img src="./assets/icons/icon_coupang.png" style="width: 120px; height: 120px" /></div>
           <div class="app-name">쿠팡 바로가기</div>
         </div>
       </a>
@@ -69,36 +88,55 @@
     <div class="app-container">
       <a href="https://play.google.com/store/apps/details?id=com.freeformlabs.everybodymap" target="_blank">
         <div class="app-item">
-          <div><img class="app-icon" src="./assets/icons/icon_everybodymap.png" /></div>
+          <div class="app-icon"><img src="./assets/icons/icon_everybodymap.png" /></div>
           <div class="app-name">(안드로이드)<br />모두의맵</div>
+        </div>
+      </a>
+      <a>
+        <div class="app-item">
+          <div class="app-icon">
+            <div class="ready">준비중..</div>
+            <img src="./assets/icons/icon_everybodymap.png" />
+          </div>
+          <div class="app-name">(아이폰)<br />모두의맵</div>
         </div>
       </a>
 
       <a href="https://blog.naver.com/freeformlabs" target="_blank">
         <div class="app-item">
-          <div><img class="app-icon" src="./assets/icons/icon_naver_blog.png" /></div>
+          <div class="app-icon"><img src="./assets/icons/icon_naver_blog.png" /></div>
           <div class="app-name">프리폼랩스</div>
         </div>
       </a>
 
       <a href="https://wellnessstory.kr" target="_blank">
         <div class="app-item">
-          <div><img class="app-icon" src="./assets/icons/icon_wellnessstory.png" /></div>
+          <div class="app-icon"><img src="./assets/icons/icon_wellnessstory.png" /></div>
           <div class="app-name">웰니스 스토리</div>
         </div>
       </a>
 
       <a href="https://blog.naver.com/atomy_review" target="_blank">
         <div class="app-item">
-          <div><img class="app-icon" src="./assets/icons/icon_atomy.png" /></div>
+          <div class="app-icon"><img src="./assets/icons/icon_atomy.png" /></div>
           <div class="app-name">애터미</div>
         </div>
       </a>
 
       <a href="https://play.google.com/store/apps/details?id=com.freeformlabs.nowifi" target="_blank">
         <div class="app-item">
-          <div><img class="app-icon" src="./assets/icons/icon_nowifi.png" /></div>
+          <div class="app-icon"><img src="./assets/icons/icon_nowifi.png" /></div>
           <div class="app-name">(안드로이드)<br />오프라인<br />게임모음</div>
+        </div>
+      </a>
+
+      <a>
+        <div class="app-item">
+          <div class="app-icon">
+            <div class="ready">준비중..</div>
+            <img src="./assets/icons/icon_nowifi.png" />
+          </div>
+          <div class="app-name">(아이폰)<br />오프라인<br />게임모음</div>
         </div>
       </a>
     </div>
