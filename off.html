@@ -72,12 +72,8 @@
     </style>
   </head>
   <body>
-    <h1>A 사이트입니다</h1>
-
-    <button onclick="goToB()">B 사이트로 이동</button>
-
     <div class="toggle-container">
-      <label>자동으로 연결하기</label>
+      <label>다음부턴 자동으로 쿠팡열기</label>
       <label class="switch">
         <input type="checkbox" id="autoRedirect" />
         <span class="slider"></span>
@@ -85,27 +81,10 @@
     </div>
 
     <script>
-      const B_URL = "https://link.coupang.com/a/cabZVz"; // 👉 여기에 B 사이트 주소 입력
-
       // 자동 이동 체크 시
       document.getElementById("autoRedirect").addEventListener("change", function () {
         localStorage.setItem("auto_redirect", this.checked ? "true" : "false");
       });
-
-      // 페이지 로드 시 체크박스 상태 반영 및 자동 이동
-      window.addEventListener("DOMContentLoaded", () => {
-        const isAuto = localStorage.getItem("auto_redirect") === "true";
-        document.getElementById("autoRedirect").checked = isAuto;
-
-        if (isAuto) {
-          window.location.href = B_URL;
-        }
-      });
-
-      // 버튼 클릭 시 이동
-      function goToB() {
-        window.location.href = B_URL;
-      }
     </script>
   </body>
 </html>
