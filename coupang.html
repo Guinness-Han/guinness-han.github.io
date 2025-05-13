@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>A 사이트</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 2rem;
+        text-align: center;
+      }
+
+      button {
+        padding: 1rem 2rem;
+        font-size: 1.2rem;
+        cursor: pointer;
+        margin-bottom: 1.5rem;
+      }
+
+      .toggle-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        font-size: 1rem;
+      }
+
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 24px;
+      }
+
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: 0.4s;
+        border-radius: 24px;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 18px;
+        width: 18px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        transition: 0.4s;
+        border-radius: 50%;
+      }
+
+      input:checked + .slider {
+        background-color: #2196f3;
+      }
+
+      input:checked + .slider:before {
+        transform: translateX(26px);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>A 사이트입니다</h1>
+
+    <button onclick="goToB()">B 사이트로 이동</button>
+
+    <div class="toggle-container">
+      <label>자동으로 연결하기</label>
+      <label class="switch">
+        <input type="checkbox" id="autoRedirect" />
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <script>
+      const B_URL = "https://link.coupang.com/a/cabZVz"; // 👉 여기에 B 사이트 주소 입력
+
+      // 자동 이동 체크 시
+      document.getElementById("autoRedirect").addEventListener("change", function () {
+        localStorage.setItem("auto_redirect", this.checked ? "true" : "false");
+      });
+
+      // 페이지 로드 시 체크박스 상태 반영 및 자동 이동
+      window.addEventListener("DOMContentLoaded", () => {
+        const isAuto = localStorage.getItem("auto_redirect") === "true";
+        document.getElementById("autoRedirect").checked = isAuto;
+
+        if (isAuto) {
+          window.location.href = B_URL;
+        }
+      });
+
+      // 버튼 클릭 시 이동
+      function goToB() {
+        window.location.href = B_URL;
+      }
+    </script>
+  </body>
+</html>
