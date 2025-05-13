@@ -85,6 +85,12 @@
       document.getElementById("autoRedirect").addEventListener("change", function () {
         localStorage.setItem("auto_redirect", this.checked ? "true" : "false");
       });
+
+      // 페이지 로드 시 체크박스 상태 반영 및 자동 이동
+      window.addEventListener("DOMContentLoaded", () => {
+        const isAuto = localStorage.getItem("auto_redirect") === "true";
+        document.getElementById("autoRedirect").checked = isAuto;
+      });
     </script>
   </body>
 </html>
