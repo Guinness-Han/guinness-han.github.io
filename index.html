@@ -8,8 +8,8 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <link rel="manifest" href="/manifest.json" />
     <link rel="icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" href="/apple-icon.png" />
-    <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png" />
+    <link rel="apple-touch-icon" href="./assets/icons/icon_coupang.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="./assets/icons/icon_coupang.png" />
     <title>쿠팡</title>
     <style>
       * {
@@ -73,6 +73,60 @@
       a {
         text-decoration: none; /* 밑줄 제거 */
       }
+
+      .toggle-container {
+        margin-top: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        font-size: 1rem;
+      }
+
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 24px;
+      }
+
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: 0.4s;
+        border-radius: 24px;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 18px;
+        width: 18px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        transition: 0.4s;
+        border-radius: 50%;
+      }
+
+      input:checked + .slider {
+        background-color: #2196f3;
+      }
+
+      input:checked + .slider:before {
+        transform: translateX(26px);
+      }
     </style>
   </head>
   <body>
@@ -80,9 +134,17 @@
       <a href="https://link.coupang.com/a/cabZVz" target="_blank" style="display: inline-block">
         <div class="app-item" style="width: 120px">
           <div class="app-icon"><img src="./assets/icons/icon_coupang.png" style="width: 120px; height: 120px" /></div>
-          <div class="app-name">쿠팡 바로가기</div>
+          <div class="app-name">쿠팡</div>
         </div>
       </a>
+
+      <div class="toggle-container">
+        <label>다음부턴 자동으로 쿠팡열기</label>
+        <label class="switch">
+          <input type="checkbox" id="autoRedirect" />
+          <span class="slider"></span>
+        </label>
+      </div>
     </div>
 
     <div class="app-container">
@@ -149,5 +211,29 @@
     </div>
 
     <div style="text-align: center"><button onclick="location.reload()" style="padding: 10px 30px">새로고침</button></div>
+
+    <script>
+      const C_URL = "https://link.coupang.com/a/cabZVz"; // 👉 여기에 B 사이트 주소 입력
+
+      // 자동 이동 체크 시
+      document.getElementById("autoRedirect").addEventListener("change", function () {
+        localStorage.setItem("auto_redirect", this.checked ? "true" : "false");
+      });
+
+      // 페이지 로드 시 체크박스 상태 반영 및 자동 이동
+      window.addEventListener("DOMContentLoaded", () => {
+        const isAuto = localStorage.getItem("auto_redirect") === "true";
+        document.getElementById("autoRedirect").checked = isAuto;
+
+        if (isAuto) {
+          window.location.href = C_URL;
+        }
+      });
+
+      // 버튼 클릭 시 이동
+      function goToC() {
+        window.location.href = C_URL;
+      }
+    </script>
   </body>
 </html>
