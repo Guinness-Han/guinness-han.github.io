@@ -81,14 +81,40 @@
     </div>
 
     <script>
-      // 자동 이동 체크 시
+      // // 자동 이동 체크 시
+      // document.getElementById("autoRedirect").addEventListener("change", function () {
+      //   localStorage.setItem("auto_redirect", this.checked ? "true" : "false");
+      // });
+
+      // // 페이지 로드 시 체크박스 상태 반영 및 자동 이동
+      // window.addEventListener("DOMContentLoaded", () => {
+      //   const isAuto = localStorage.getItem("auto_redirect") === "true";
+      //   document.getElementById("autoRedirect").checked = isAuto;
+      // });
+
+      // ✅ 쿠키 저장
+      function setCookie(name, value, days) {
+        document.cookie = `${name}=${value}; path=/;`;
+      }
+
+      // ✅ 쿠키 읽기
+      function getCookie(name) {
+        const cookies = document.cookie.split("; ");
+        for (let c of cookies) {
+          const [key, value] = c.split("=");
+          if (key === name) return value;
+        }
+        return null;
+      }
+
+      // ✅ 자동 이동 스위치 변경 시 쿠키 저장 및 새로고침
       document.getElementById("autoRedirect").addEventListener("change", function () {
-        localStorage.setItem("auto_redirect", this.checked ? "true" : "false");
+        setCookie("auto_redirect", this.checked ? "true" : "false", 365);
       });
 
-      // 페이지 로드 시 체크박스 상태 반영 및 자동 이동
+      // ✅ 페이지 로드 시 쿠키 확인 → 체크박스 상태 반영 & 자동 이동
       window.addEventListener("DOMContentLoaded", () => {
-        const isAuto = localStorage.getItem("auto_redirect") === "true";
+        const isAuto = getCookie("auto_redirect") === "true";
         document.getElementById("autoRedirect").checked = isAuto;
       });
     </script>
